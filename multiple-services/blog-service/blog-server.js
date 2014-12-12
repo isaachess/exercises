@@ -6,8 +6,12 @@ var config = require('../common/config')
 var app = koa()
 app.use(router(app))
 
+config.dbConnect()
+
 app.get('/posts/:id', function* (next) {
-    this.body = 'Hello World from the blog server!'
+    var postId = this.params.id
+    var s = config.postTable.get(postId)
+    this.body = yield config.dbRun(s)
 })
 
 app.listen(3001)

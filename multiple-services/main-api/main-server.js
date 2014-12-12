@@ -7,8 +7,6 @@ var config = require('../common/config')
 var app = koa()
 app.use(router(app))
 
-config.dbConnect()
-
 app.get('/posts/:id', function* (next) {
     var postId = this.params.id
     this.body = yield getPost(postId)

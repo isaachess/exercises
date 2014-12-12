@@ -8,6 +8,8 @@ var dbOptions = {
 }
 
 var connection;
+var postTable = r.table('posts')
+var commentTable = r.table('comments')
 
 function dbConnect() {
     var d = q.defer()
@@ -26,10 +28,13 @@ function dbRun(sequence) {
     sequence.run(connection, function(err, cursor) {
         if (err) rethinkError(err)
         else {
-            cursor.toArray(function(err, results) {
-                if (err) rethinkError(err)
-                else d.resolve(results)
-            })
+            if (cursor && cursor.toArray) {
+                cursor.toArray(function(err, results) {
+                    if (err) rethinkError(err)
+                    else d.resolve(results)
+                })
+            }
+            else d.resolve(cursor)
         }
     })
     return d.promise
@@ -42,3 +47,5 @@ function rethinkError(error) {
 exports.dbOptions = dbOptions;
 exports.dbRun = dbRun;
 exports.dbConnect =dbConnect;
+exports.postTable = postTable;
+exports.commentTable = commentTable;
