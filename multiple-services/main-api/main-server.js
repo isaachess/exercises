@@ -1,4 +1,3 @@
-var express = require('express')
 var koa = require('koa')
 var router = require('koa-router')
 var request = require('request')
