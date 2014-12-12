@@ -1,4 +1,6 @@
 var express = require('express')
+var r = require('rethinkdb')
+var config = require('../common/config')
 
 var app = express()
 
