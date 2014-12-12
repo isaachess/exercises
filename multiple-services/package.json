@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.10.5",
+    "koa": "^0.13.0",
     "q": "^1.1.2",
-    "rethinkdb": "^1.15.0-0"
+    "request": "^2.51.0",
+    "rethinkdb": "^1.15.0-0",
+    "koa-router": "^3.7.0"
   }
 }
